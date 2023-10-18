@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
+import { useSelector } from 'react-redux';
 
-const Example = ({ type, color }) => (
+const Loader = () => {
+  const { isLoading } = useSelector(state => state.contacts);
+
+  return isLoading && <Example />;
+};
+
+const Example = ({ type }) => (
   <ReactLoading
     type={type}
     color={'rgb(250, 235, 215)'}
@@ -11,4 +18,4 @@ const Example = ({ type, color }) => (
   />
 );
 
-export default Example;
+export default Loader;
