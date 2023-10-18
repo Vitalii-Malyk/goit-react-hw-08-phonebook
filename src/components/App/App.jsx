@@ -14,16 +14,18 @@ const Registration = lazy(() => import('Page/Registration/RegistrationPage'));
 
 const App = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="user" element={<UserPage />} />
-          <Route path="login" element={<Login />} />
-          <Route path="registration" element={<Registration />} />
-        </Route>
-      </Routes>
-    </Suspense>
+    <>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="user" element={<UserPage />} />
+            <Route path="login" element={<Login />} />
+            <Route path="registration" element={<Registration />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 
