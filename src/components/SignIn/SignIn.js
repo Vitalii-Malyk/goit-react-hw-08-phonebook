@@ -22,7 +22,10 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link
+        color="inherit"
+        href="http://localhost:3000/goit-react-hw-08-phonebook"
+      >
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -49,6 +52,14 @@ export default function SignIn() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Button
+          type="button"
+          variant="outlined"
+          sx={{ mt: 1, mb: 1 }}
+          size="small"
+        >
+          Go home
+        </Button>
         <Box
           sx={{
             marginTop: 8,
