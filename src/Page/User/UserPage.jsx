@@ -1,7 +1,5 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-
-import { ButtonStyle } from 'Page/User/UserPage.styled';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 // import { useSelector } from 'react-redux';
 // import CreateListContact from 'components/CreateListContact/CreateListContact';
@@ -9,11 +7,14 @@ import { ButtonStyle } from 'Page/User/UserPage.styled';
 // import { WrapMainElementStyle } from 'components/App/App.styled';
 // import FilterContacts from 'components/FilterContacts/FilterContacts';
 import Loader from 'components/Loading/Loading';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from 'redux/operations';
+import { Button } from '@mui/material';
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { name, email } = useSelector(state => state.auth.user);
   // const { error } = useSelector(state => state.contacts);
 
   const handlLogout = () => {
@@ -21,16 +22,29 @@ const UserPage = () => {
   };
   return (
     <>
-      <ButtonStyle
+      <Button
         onClick={() => {
-          console.log('hello');
+          navigate('/');
         }}
+        type="button"
+        variant="outlined"
+        sx={{ mt: 1, mb: 1 }}
+        size="small"
       >
         Go back
-      </ButtonStyle>
+      </Button>
       <div>
-        <p>mango@mail.com</p>
-        <button onClick={handlLogout}>Logout</button>
+        <p>{name}</p>
+        <p>{email}</p>
+        <Button
+          onClick={handlLogout}
+          type="button"
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          size="small"
+        >
+          Logout
+        </Button>
       </div>
       {/* <WrapMainElementStyle>
         <h1>Phonebook</h1>
