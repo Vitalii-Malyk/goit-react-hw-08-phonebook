@@ -36,14 +36,23 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
+export default function SignUp({ registration }) {
+  const handleSubmit = e => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    // console.log({
+    //   name: data.get('name'),
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    registration({
+      name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     });
+  };
+  const handleClick = () => {
+    console.log('Home');
   };
 
   return (
@@ -51,6 +60,7 @@ export default function SignUp() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Button
+          onClick={handleClick}
           type="button"
           variant="outlined"
           sx={{ mt: 1, mb: 1 }}
@@ -70,7 +80,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Registration
           </Typography>
           <Box
             component="form"
@@ -79,25 +89,15 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="Name"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -119,6 +119,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  helperText="min. length is 7 ch."
                 />
               </Grid>
             </Grid>
@@ -128,7 +129,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Registration
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

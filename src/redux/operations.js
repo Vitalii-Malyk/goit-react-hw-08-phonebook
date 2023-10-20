@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { logout, refresh, signIn, signUp } from 'api/auth';
 
 import { delContact, getContacts, postContact } from 'api/contacts';
 
@@ -38,4 +39,60 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-export { fetchContacts, addContact, deleteContact };
+const registrationThunk = createAsyncThunk(
+  'auth/registration',
+  async (body, { rejectWithValue }) => {
+    try {
+      const data = await signUp(body);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.respons.data);
+    }
+  }
+);
+
+const refreshThunk = createAsyncThunk(
+  'auth/refresh',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await refresh();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.respons.data);
+    }
+  }
+);
+
+const loginThunk = createAsyncThunk(
+  'auth/login',
+  async (body, { rejectWithValue }) => {
+    try {
+      const data = await signIn(body);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.respons.data);
+    }
+  }
+);
+
+const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await logout();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.respons.data);
+    }
+  }
+);
+
+export {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  registrationThunk,
+  refreshThunk,
+  loginThunk,
+  logoutThunk,
+};

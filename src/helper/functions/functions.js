@@ -23,6 +23,16 @@ const handlefulfilledDel = (state, { payload }) => {
   state.items = state.items.filter(contact => contact.id !== payload.id);
 };
 
+const handleAuthFulfilled = (state, { payload }) => {
+  state.token = payload.token;
+  state.user = payload.user;
+};
+
+const handleLogoutFulfilled = (state, { payload }) => {
+  state.token = '';
+  state.user = null;
+};
+
 export {
   handlePending,
   handleRejected,
@@ -30,4 +40,6 @@ export {
   handlefulfilledFetch,
   handlefulfilledAdd,
   handlefulfilledDel,
+  handleAuthFulfilled,
+  handleLogoutFulfilled,
 };

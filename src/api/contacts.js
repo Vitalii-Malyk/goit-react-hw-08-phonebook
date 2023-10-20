@@ -1,14 +1,18 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
-axios.defaults.baseURL = 'https://6526d9f2917d673fd76d18bb.mockapi.io';
+
+const instance = axios.create({
+  baseURL: 'https://connections-api.herokuapp.com',
+});
+
+export const setToken = token => {
+  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
 
 export async function getContacts() {
-  try {
-    const { data } = await axios.get('/contacts');
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  const { data } = await instance.get('/contacts');
+  console.log(data);
+  return data;
 }
 
 export async function postContact({ name, phone }) {
