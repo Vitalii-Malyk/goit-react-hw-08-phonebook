@@ -19,12 +19,13 @@ const UserPage = () => {
 
   const handlLogout = () => {
     dispatch(logoutThunk());
+    navigate('/');
   };
   return (
     <>
       <Button
         onClick={() => {
-          navigate('/');
+          navigate('login');
         }}
         type="button"
         variant="outlined"
