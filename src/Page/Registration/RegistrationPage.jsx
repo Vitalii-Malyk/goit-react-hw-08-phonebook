@@ -11,7 +11,7 @@ const RegistrationPage = () => {
 
   const registration = body => {
     dispatch(registrationThunk(body));
-    navigate('/');
+    navigate('/user');
   };
 
   useEffect(() => {

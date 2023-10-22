@@ -14,6 +14,7 @@ import { deleteContact, fetchContacts } from 'redux/operations';
 const CreateListContact = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
+  console.log(contacts);
   const filter = useSelector(state => state.filter);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const CreateListContact = () => {
     return filtredContacts.map(contact => {
       return (
         <ItemElementStyle key={nanoid()}>
-          {`${contact.name} : ${contact.phone}`}
+          {`${contact.name} : ${contact.number}`}
           <ButtonElementStyle
             data-id={contact.id}
             onClick={() => deleteContactFromList(contact)}

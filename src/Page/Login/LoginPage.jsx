@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const login = body => {
     dispatch(loginThunk(body));
-    navigate('/user', { replace: true });
+    navigate('/user');
   };
 
   useEffect(() => {

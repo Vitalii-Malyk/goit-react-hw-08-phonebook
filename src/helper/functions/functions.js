@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast';
+
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -27,11 +29,11 @@ const handleAuthFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.user = payload.user;
   state.isAuth = true;
+  toast.success(`Welcome ${state.user.name}!`);
 };
 
 const handleRefreshFulfilled = (state, { payload }) => {
   state.user = payload;
-  state.isAuth = true;
 };
 
 const handleLogoutFulfilled = (state, { payload }) => {

@@ -14,7 +14,7 @@ import { addContact, fetchContacts } from 'redux/operations';
 const FormCreateContact = () => {
   const [name, setName] = useState('');
   const [id, setId] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setPhone] = useState('');
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.contacts);
 
@@ -29,7 +29,7 @@ const FormCreateContact = () => {
       setName(value);
       setId(nanoid());
     }
-    if (name === 'phone') {
+    if (name === 'number') {
       setPhone(value);
       setId(nanoid());
     }
@@ -42,7 +42,7 @@ const FormCreateContact = () => {
   const сreateСontact = e => {
     e.preventDefault();
     resetForm();
-    return formSubmitHandler({ name, phone, id });
+    return formSubmitHandler({ name, number, id });
   };
   const formSubmitHandler = data => {
     repeatControl(data);
@@ -51,7 +51,7 @@ const FormCreateContact = () => {
     let nameArr = {
       id: newContact.id,
       name: newContact.name,
-      phone: newContact.phone,
+      number: newContact.number,
     };
     if (items) {
       if (
@@ -94,9 +94,9 @@ const FormCreateContact = () => {
       <InputElementStyle
         type="tel"
         onChange={handleChange}
-        name="phone"
+        name="number"
         pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-        value={phone}
+        value={number}
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       ></InputElementStyle>

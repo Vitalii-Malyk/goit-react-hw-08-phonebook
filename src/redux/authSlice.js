@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   loginThunk,
   logoutThunk,
@@ -10,6 +11,7 @@ import {
   handleLogoutFulfilled,
   handleRefreshFulfilled,
 } from 'helper/functions/functions';
+import toast from 'react-hot-toast';
 
 const initialState = {
   token: null,
@@ -25,6 +27,9 @@ const authSlice = createSlice({
       .addCase(registrationThunk.fulfilled, handleAuthFulfilled)
       .addCase(refreshThunk.fulfilled, handleRefreshFulfilled)
       .addCase(loginThunk.fulfilled, handleAuthFulfilled)
+      .addCase(loginThunk.rejected, () => {
+        toast.error('Wrong email or password');
+      })
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled);
   },
 });
