@@ -54,8 +54,13 @@ const registrationThunk = createAsyncThunk(
 const refreshThunk = createAsyncThunk(
   'auth/refresh',
   async (_, { rejectWithValue }) => {
+    const dataToken = JSON.parse(localStorage.getItem('persist:auth'));
+    const token = JSON.parse(dataToken?.token);
+    if (token === null) {
+      rejectWithValue('error');
+    }
     try {
-      const data = await refresh();
+      const data = await refresh(token);
       return data;
     } catch (error) {
       return rejectWithValue(error.respons.data);

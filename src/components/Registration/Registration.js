@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -37,6 +38,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp({ registration }) {
+  const navigate = useNavigate();
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -51,8 +53,8 @@ export default function SignUp({ registration }) {
       password: data.get('password'),
     });
   };
-  const handleClick = () => {
-    console.log('Home');
+  const handlHomeBtn = () => {
+    navigate('/');
   };
 
   return (
@@ -60,11 +62,11 @@ export default function SignUp({ registration }) {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Button
-          onClick={handleClick}
           type="button"
           variant="outlined"
           sx={{ mt: 1, mb: 1 }}
           size="small"
+          onClick={handlHomeBtn}
         >
           Go home
         </Button>

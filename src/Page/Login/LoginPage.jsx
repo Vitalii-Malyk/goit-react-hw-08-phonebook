@@ -8,11 +8,11 @@ import { loginThunk } from 'redux/operations';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(state => state.auth.token);
+  const isAuth = useSelector(state => state.isAuth);
 
   const login = body => {
     dispatch(loginThunk(body));
-    navigate('/');
+    navigate('/user', { replace: true });
   };
 
   useEffect(() => {

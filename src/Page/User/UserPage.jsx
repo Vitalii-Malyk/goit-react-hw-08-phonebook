@@ -14,7 +14,8 @@ import { Button } from '@mui/material';
 const UserPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { name, email } = useSelector(state => state.auth.user);
+  const user = useSelector(state => state.auth.user);
+
   // const { error } = useSelector(state => state.contacts);
 
   const handlLogout = () => {
@@ -35,8 +36,9 @@ const UserPage = () => {
         Go back
       </Button>
       <div>
-        <p>{name}</p>
-        <p>{email}</p>
+        <p>{user?.name}</p>
+        <p>{user?.email}</p>
+        {/* {error && <b>{error}</b>} */}
         <Button
           onClick={handlLogout}
           type="button"

@@ -1,5 +1,3 @@
-// import { useEffect, useState } from 'react';
-
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from 'components/Layout/Layout';
@@ -19,9 +17,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="user" element={<UserPage />} />
             <Route path="login" element={<Login />} />
             <Route path="registration" element={<Registration />} />
+            <Route path="user" element={<UserPage />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Route>
         </Routes>
       </Suspense>

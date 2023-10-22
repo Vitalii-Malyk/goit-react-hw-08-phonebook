@@ -1,9 +1,8 @@
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from 'components/Header/Header';
 import { Container } from './Layout.styled';
-import Example from 'components/Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { refreshThunk } from 'redux/operations';
 
@@ -17,9 +16,7 @@ const Layout = () => {
   return (
     <Container>
       <Header />
-      <Suspense fallback={<Example />}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </Container>
   );
 };

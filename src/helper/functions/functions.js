@@ -26,11 +26,18 @@ const handlefulfilledDel = (state, { payload }) => {
 const handleAuthFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.user = payload.user;
+  state.isAuth = true;
+};
+
+const handleRefreshFulfilled = (state, { payload }) => {
+  state.user = payload;
+  state.isAuth = true;
 };
 
 const handleLogoutFulfilled = (state, { payload }) => {
   state.token = '';
   state.user = null;
+  state.isAuth = false;
 };
 
 export {
@@ -42,4 +49,5 @@ export {
   handlefulfilledDel,
   handleAuthFulfilled,
   handleLogoutFulfilled,
+  handleRefreshFulfilled,
 };

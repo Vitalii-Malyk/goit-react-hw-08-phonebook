@@ -2,17 +2,10 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderStyled = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0;
-  margin-bottom: 16px;
-  border-bottom: 1px solid black;
-
   > nav {
     display: flex;
-    gap: 10px;
+    align-items: baseline;
+    justify-content: space-between;
   }
 `;
 
@@ -24,4 +17,8 @@ export const StyledNavLink = styled(NavLink)`
   &.active {
     color: orangered;
   }
+`;
+export const StyledWrap = styled.div`
+  display: flex;
+  gap: 30px;
 `;

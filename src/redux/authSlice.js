@@ -8,11 +8,13 @@ import {
 import {
   handleAuthFulfilled,
   handleLogoutFulfilled,
+  handleRefreshFulfilled,
 } from 'helper/functions/functions';
 
 const initialState = {
-  token: '',
+  token: null,
   user: null,
+  isAuth: false,
 };
 
 const authSlice = createSlice({
@@ -21,7 +23,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registrationThunk.fulfilled, handleAuthFulfilled)
-      .addCase(refreshThunk.fulfilled, handleAuthFulfilled)
+      .addCase(refreshThunk.fulfilled, handleRefreshFulfilled)
       .addCase(loginThunk.fulfilled, handleAuthFulfilled)
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled);
   },
