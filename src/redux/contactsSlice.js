@@ -8,7 +8,7 @@ import {
 import {
   handlePending,
   handleRejected,
-  handlefulfilled,
+  handlefullfilled,
   handlefullfilledAdd,
   handlefullfilledClear,
   handlefullfilledDel,
@@ -18,7 +18,7 @@ import {
 import {
   addContact,
   clearContacts,
-  deleteContact,
+  delContact,
   fetchContacts,
   updateContact,
 } from 'redux/contactsOperations';
@@ -45,14 +45,14 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, handlefullfilledFetch)
       .addCase(addContact.fulfilled, handlefullfilledAdd)
-      .addCase(deleteContact.fulfilled, handlefullfilledDel)
+      .addCase(delContact.fulfilled, handlefullfilledDel)
       .addCase(updateContact.fulfilled, handlefullfilledUpdate)
       .addCase(clearContacts.fulfilled, handlefullfilledClear)
       .addMatcher(
         isPending(
           fetchContacts,
           addContact,
-          deleteContact,
+          delContact,
           updateContact,
           clearContacts
         ),
@@ -62,7 +62,7 @@ const contactsSlice = createSlice({
         isRejected(
           fetchContacts,
           addContact,
-          deleteContact,
+          delContact,
           updateContact,
           clearContacts
         ),
@@ -72,11 +72,11 @@ const contactsSlice = createSlice({
         isFulfilled(
           fetchContacts,
           addContact,
-          deleteContact,
+          delContact,
           updateContact,
           clearContacts
         ),
-        handlefulfilled
+        handlefullfilled
       );
   },
 });

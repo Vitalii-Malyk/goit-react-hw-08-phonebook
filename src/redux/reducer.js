@@ -4,16 +4,20 @@ import { authReducer } from './authSlice';
 import { contactsReducer } from './contactsSlice';
 import { filterReducer } from './filterSlice';
 
-const persistConfig = {
+const authConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
-const authPersistedReducer = persistReducer(persistConfig, authReducer);
+const contactsConfig = {
+  key: 'contacts',
+  storage,
+  whitelist: ['items'],
+};
 
 export const reducer = {
-  contacts: contactsReducer,
-  filter: filterReducer,
-  auth: authPersistedReducer,
+  auth: persistReducer(authConfig, authReducer),
+  contacts: persistReducer(contactsConfig, contactsReducer),
+  filters: filterReducer,
 };

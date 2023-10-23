@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,8 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 function Copyright(props) {
+  const navigate = useNavigate();
   return (
     <Typography
       variant="body2"
@@ -24,8 +26,11 @@ function Copyright(props) {
     >
       {'Copyright © '}
       <Link
-        color="inherit"
-        href="http://localhost:3000/goit-react-hw-08-phonebook"
+        component="button"
+        variant="body2"
+        onClick={() => {
+          navigate('/');
+        }}
       >
         Your Website
       </Link>{' '}
@@ -110,10 +115,6 @@ export default function SignIn({ login }) {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             <Button
               type="submit"
               fullWidth
@@ -125,8 +126,11 @@ export default function SignIn({ login }) {
             <Grid container>
               <Grid item>
                 <Link
-                  href="http://localhost:3000/goit-react-hw-08-phonebook/registration"
+                  component="button"
                   variant="body2"
+                  onClick={() => {
+                    navigate('/registration');
+                  }}
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>

@@ -10,14 +10,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from 'redux/filterSlice';
 import Example from 'components/Loading/Loading';
 
-const FilterContacts = value => {
+const FilterContacts = () => {
   let nameInputId = nanoid();
   const filter = useSelector(state => state.filter);
+
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.contacts);
 
-  const handleChange = event => {
-    dispatch(updateFilter(event.currentTarget.value));
+  const handleChange = ({ currentTarget: { value } }) => {
+    const normalizedValue = value.toLowerCase().trim();
+    dispatch(updateFilter(normalizedValue));
   };
 
   return (

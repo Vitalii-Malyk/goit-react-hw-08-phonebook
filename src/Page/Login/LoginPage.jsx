@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 import SignIn from 'components/SignIn/SignIn';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/authOperations';
@@ -8,13 +9,13 @@ import { loginThunk } from 'redux/authOperations';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(state => state.isAuth);
+  const isAuth = useSelector(state => state.auth.isAuth);
 
   const login = body => {
     dispatch(loginThunk(body));
-    if (isAuth === true) {
-      navigate('/user');
-    }
+
+    navigate('/user');
+
     return;
   };
 

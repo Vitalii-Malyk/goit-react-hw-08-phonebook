@@ -20,9 +20,6 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(state => state.auth.user);
-  // const error = useSelector(state => state.contacts);
-
-  // const { error } = useSelector(state => state.contacts);
 
   const handlLogout = () => {
     dispatch(logoutThunk());
@@ -45,7 +42,6 @@ const UserPage = () => {
         <div>
           <p>{user?.name}</p>
           <p>{user?.email}</p>
-          {/* {error && <b>{error}</b>} */}
           <Button
             onClick={handlLogout}
             type="button"
@@ -56,12 +52,10 @@ const UserPage = () => {
             Logout
           </Button>
         </div>
-
         <h1>Phonebook</h1>
         <FormCreateContact />
         <h2>Contacts</h2>
         <FilterContacts />
-        {/* {error && <b>{error}</b>} */}
         <CreateListContact />
       </WrapMainElementStyle>
       {/* <Suspense fallback={<Loader />}>

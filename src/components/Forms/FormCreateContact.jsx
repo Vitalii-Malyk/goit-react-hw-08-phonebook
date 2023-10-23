@@ -8,7 +8,7 @@ import {
   ButtonElementStyle,
 } from 'components/Forms/FormCreateContact.styled';
 
-import { addContact } from 'redux/authOperations';
+import { addContact } from 'redux/contactsOperations';
 import { nanoid } from '@reduxjs/toolkit';
 
 const FormCreateContact = () => {
@@ -44,7 +44,7 @@ const FormCreateContact = () => {
       name: newContact.name,
       number: newContact.number,
     };
-    if (items) {
+    if (items.length > 0) {
       if (
         !items.find(
           nameArr =>
@@ -52,7 +52,6 @@ const FormCreateContact = () => {
         )
       ) {
         dispatch(addContact(nameArr));
-        console.log(nameArr);
         Notify.info(
           `A contact named ${nameArr.name} has been added to the contacts book`,
           {
@@ -68,6 +67,7 @@ const FormCreateContact = () => {
         });
       }
     } else {
+      console.log(nameArr);
       dispatch(addContact(nameArr));
       resetForm();
     }

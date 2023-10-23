@@ -9,22 +9,24 @@ import {
   ButtonElementStyle,
   WrapElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
-import { deleteContact, fetchContacts } from 'redux/authOperations';
+import { delContact, fetchContacts } from 'redux/contactsOperations';
+import Loader from 'components/Loading/Loading';
 
 const CreateListContact = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.contacts.isLoading);
+  const error = useSelector(state => state.contacts.error);
   const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const filter = useSelector(state => state.filters);
 
   useEffect(() => {
-    if (contacts.items.length > 0) {
-      dispatch(fetchContacts());
-    }
-    return;
-  }, [contacts.items.length, dispatch]);
+    if (!isAuth) return;
+    dispatch(fetchContacts());
+  }, [dispatch, isAuth]);
 
   const deleteContactFromList = ({ id, name }) => {
-    dispatch(deleteContact(id));
+    dispatch(delContact(id));
     Notify.info(`The contact with the name ${name} has been deleted`, {
       position: 'center-center',
       autoHideDelay: 1500,
@@ -32,11 +34,13 @@ const CreateListContact = () => {
   };
 
   const normalizedFilter = filter.toLocaleLowerCase();
+  console.log(normalizedFilter);
   const filtredContacts = contacts.items.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 
   const createContactItem = () => {
+    console.log(filtredContacts);
     return filtredContacts.map(contact => {
       return (
         <ItemElementStyle key={nanoid()}>
@@ -53,6 +57,8 @@ const CreateListContact = () => {
   };
   return (
     <ListElementStyle>
+      {loading && <Loader />}
+      {error && <p>Error... {error}</p>}
       {contacts.items.length > 0 ? (
         createContactItem()
       ) : (
