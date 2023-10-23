@@ -7,11 +7,11 @@ import {
   registrationThunk,
 } from './authOperations';
 import {
-  handleAuthFulfilled,
+  handleAuthFullfilled,
   handleAuthPending,
   handleAuthRejected,
-  handleLogoutFulfilled,
-  handleRefreshFulfilled,
+  handleLogoutFullfilled,
+  handleRefreshFullfilled,
 } from 'helper/functions/functions';
 import toast from 'react-hot-toast';
 
@@ -29,18 +29,18 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registrationThunk.pending, handleAuthPending)
-      .addCase(registrationThunk.fulfilled, handleAuthFulfilled)
+      .addCase(registrationThunk.fulfilled, handleAuthFullfilled)
       .addCase(registrationThunk.rejected, handleAuthRejected)
       .addCase(refreshThunk.pending, handleAuthPending)
-      .addCase(refreshThunk.fulfilled, handleRefreshFulfilled)
+      .addCase(refreshThunk.fulfilled, handleRefreshFullfilled)
       .addCase(refreshThunk.rejected, handleAuthRejected)
       .addCase(loginThunk.pending, handleAuthPending)
-      .addCase(loginThunk.fulfilled, handleAuthFulfilled)
+      .addCase(loginThunk.fulfilled, handleAuthFullfilled)
       .addCase(loginThunk.rejected, handleAuthRejected, () => {
         toast.error('Wrong email or password');
       })
       .addCase(logoutThunk.pending, handleAuthPending)
-      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
+      .addCase(logoutThunk.fulfilled, handleLogoutFullfilled)
       .addCase(logoutThunk.rejected, handleAuthRejected)
       .addDefaultCase((state, action) => {});
   },

@@ -12,7 +12,7 @@ const handleAuthRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const handleAuthFulfilled = (state, action) => {
+const handleAuthFullfilled = (state, action) => {
   state.token = action.payload.token;
   state.user = action.payload.user;
   state.isAuth = true;
@@ -20,13 +20,13 @@ const handleAuthFulfilled = (state, action) => {
   toast.success(`Welcome ${state.user.name}!`);
 };
 
-const handleRefreshFulfilled = (state, action) => {
+const handleRefreshFullfilled = (state, action) => {
   state.user = action.payload;
   state.isAuth = true;
   state.isLoading = false;
 };
 
-const handleLogoutFulfilled = (state, action) => {
+const handleLogoutFullfilled = (state, action) => {
   state.token = null;
   state.user = null;
   state.isAuth = false;
@@ -35,43 +35,59 @@ const handleLogoutFulfilled = (state, action) => {
 
 // ?----------------CONTACTS----------------------
 
-const handlePending = state => {
+const handlePending = (state, action) => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, { payload }) => {
+const handleRejected = (state, action) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = action.payload;
 };
-const handlefulfilled = state => {
-  state.isLoading = false;
-  state.error = null;
-};
-
-const handlefulfilledFetch = (state, { payload }) => {
-  state.items = payload;
-};
-
-const handlefulfilledAdd = (state, { payload }) => {
+const handlefullfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.items = [payload, ...state.items];
 };
 
-const handlefulfilledDel = (state, { payload }) => {
-  state.items = state.items.filter(contact => contact.id !== payload.id);
+const handlefullfilledFetch = (state, action) => {
+  state.items = action.payload.map(item => {
+    const selected = false;
+    return { ...item, selected };
+  });
+};
+
+const handlefullfilledAdd = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.items.push(action.payload);
+};
+
+const handlefullfilledDel = (state, action) => {
+  state.items = state.items.filter(contact => contact.id !== action.payload.id);
+};
+
+const handlefullfilledUpdate = (state, action) => {
+  const index = state.items.findIndex(
+    contact => contact.id === action.payload.id
+  );
+  state.items[index].name = action.payload.name;
+  state.items[index].number = action.payload.number;
+};
+const handlefullfilledClear = (state, action) => {
+  state.items = action.payload;
 };
 
 export {
   handlePending,
   handleRejected,
-  handlefulfilled,
-  handlefulfilledFetch,
-  handlefulfilledAdd,
-  handlefulfilledDel,
+  handlefullfilled,
+  handlefullfilledFetch,
+  handlefullfilledAdd,
+  handlefullfilledDel,
   handleAuthPending,
-  handleAuthFulfilled,
+  handleAuthFullfilled,
   handleAuthRejected,
-  handleLogoutFulfilled,
-  handleRefreshFulfilled,
+  handleLogoutFullfilled,
+  handleRefreshFullfilled,
+  handlefullfilledUpdate,
+  handlefullfilledClear,
 };

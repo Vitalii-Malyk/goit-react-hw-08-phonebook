@@ -57,7 +57,7 @@ const updateContact = createAsyncThunk(
   }
 );
 
-export const clearContactsThunk = createAsyncThunk(
+const clearContacts = createAsyncThunk(
   'contacts/clearContacts',
   async (_, { rejectWithValue }) => {
     try {
@@ -69,4 +69,4 @@ export const clearContactsThunk = createAsyncThunk(
   }
 );
 
-export { fetchContacts, addContact, delContact, updateContact };
+export { fetchContacts, addContact, delContact, updateContact, clearContacts };

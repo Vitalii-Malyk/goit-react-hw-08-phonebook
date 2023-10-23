@@ -9,11 +9,19 @@ import {
   handlePending,
   handleRejected,
   handlefulfilled,
-  handlefulfilledAdd,
-  handlefulfilledDel,
-  handlefulfilledFetch,
+  handlefullfilledAdd,
+  handlefullfilledClear,
+  handlefullfilledDel,
+  handlefullfilledFetch,
+  handlefullfilledUpdate,
 } from 'helper/functions/functions';
-import { addContact, deleteContact, fetchContacts } from './authOperations';
+import {
+  addContact,
+  clearContacts,
+  deleteContact,
+  fetchContacts,
+  updateContact,
+} from 'redux/contactsOperations';
 
 const initialState = {
   items: [],
@@ -25,24 +33,53 @@ const initialState = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialState,
+  reducers: {
+    toggleOk(state, action) {
+      const index = state.items.findIndex(
+        contact => contact.id === action.payload.id
+      );
+      state.items[index].selected = !state.items[index].selected;
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.fulfilled, handlefulfilledFetch)
-      .addCase(addContact.fulfilled, handlefulfilledAdd)
-      .addCase(deleteContact.fulfilled, handlefulfilledDel)
+      .addCase(fetchContacts.fulfilled, handlefullfilledFetch)
+      .addCase(addContact.fulfilled, handlefullfilledAdd)
+      .addCase(deleteContact.fulfilled, handlefullfilledDel)
+      .addCase(updateContact.fulfilled, handlefullfilledUpdate)
+      .addCase(clearContacts.fulfilled, handlefullfilledClear)
       .addMatcher(
-        isPending(fetchContacts, addContact, deleteContact),
+        isPending(
+          fetchContacts,
+          addContact,
+          deleteContact,
+          updateContact,
+          clearContacts
+        ),
         handlePending
       )
       .addMatcher(
-        isRejected(fetchContacts, addContact, deleteContact),
+        isRejected(
+          fetchContacts,
+          addContact,
+          deleteContact,
+          updateContact,
+          clearContacts
+        ),
         handleRejected
       )
       .addMatcher(
-        isFulfilled(fetchContacts, addContact, deleteContact),
+        isFulfilled(
+          fetchContacts,
+          addContact,
+          deleteContact,
+          updateContact,
+          clearContacts
+        ),
         handlefulfilled
       );
   },
 });
 
 export const contactsReducer = contactsSlice.reducer;
+export const { toggleOk } = contactsSlice.actions;
