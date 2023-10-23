@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -9,29 +8,21 @@ import {
   ButtonElementStyle,
 } from 'components/Forms/FormCreateContact.styled';
 
-import { addContact, fetchContacts } from 'redux/operations';
+import { addContact } from 'redux/authOperations';
+import { nanoid } from '@reduxjs/toolkit';
 
 const FormCreateContact = () => {
   const [name, setName] = useState('');
-  const [id, setId] = useState('');
   const [number, setPhone] = useState('');
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.contacts);
 
-  useEffect(() => {
-    return () => {
-      dispatch(fetchContacts());
-    };
-  }, [dispatch]);
-
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') {
       setName(value);
-      setId(nanoid());
     }
     if (name === 'number') {
       setPhone(value);
-      setId(nanoid());
     }
   };
 
@@ -41,15 +32,15 @@ const FormCreateContact = () => {
   };
   const сreateСontact = e => {
     e.preventDefault();
-    resetForm();
-    return formSubmitHandler({ name, number, id });
+
+    return formSubmitHandler({ name, number });
   };
-  const formSubmitHandler = data => {
-    repeatControl(data);
+  const formSubmitHandler = ({ name, number }) => {
+    repeatControl({ name, number });
   };
   const repeatControl = newContact => {
     let nameArr = {
-      id: newContact.id,
+      id: nanoid(),
       name: newContact.name,
       number: newContact.number,
     };
@@ -61,6 +52,7 @@ const FormCreateContact = () => {
         )
       ) {
         dispatch(addContact(nameArr));
+        console.log(nameArr);
         Notify.info(
           `A contact named ${nameArr.name} has been added to the contacts book`,
           {
@@ -68,6 +60,7 @@ const FormCreateContact = () => {
             timeout: '1500',
           }
         );
+        resetForm();
       } else {
         Notify.info('The contact is already in the phone book!', {
           position: 'center-center',
@@ -76,6 +69,7 @@ const FormCreateContact = () => {
       }
     } else {
       dispatch(addContact(nameArr));
+      resetForm();
     }
   };
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import FilterContacts from 'components/FilterContacts/FilterContacts';
 // import Loader from 'components/Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutThunk } from 'redux/operations';
+import { logoutThunk } from 'redux/authOperations';
 import { Button } from '@mui/material';
 import { WrapMainElementStyle } from 'components/App/App.styled';
 import FormCreateContact from 'components/Forms/FormCreateContact';

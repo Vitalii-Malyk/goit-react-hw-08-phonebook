@@ -1,7 +1,7 @@
 import SignUp from 'components/Registration/Registration';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { registrationThunk } from 'redux/operations';
+import { registrationThunk } from 'redux/authOperations';
 import { useEffect } from 'react';
 
 const RegistrationPage = () => {

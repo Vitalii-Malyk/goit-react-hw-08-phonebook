@@ -9,17 +9,19 @@ import {
   ButtonElementStyle,
   WrapElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/authOperations';
 
 const CreateListContact = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
   const filter = useSelector(state => state.filter);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (contacts.items.length > 0) {
+      dispatch(fetchContacts());
+    }
+    return;
+  }, [contacts.items.length, dispatch]);
 
   const deleteContactFromList = ({ id, name }) => {
     dispatch(deleteContact(id));

@@ -5,9 +5,11 @@ import {
   logoutThunk,
   refreshThunk,
   registrationThunk,
-} from './operations';
+} from './authOperations';
 import {
   handleAuthFulfilled,
+  handleAuthPending,
+  handleAuthRejected,
   handleLogoutFulfilled,
   handleRefreshFulfilled,
 } from 'helper/functions/functions';
@@ -17,6 +19,8 @@ const initialState = {
   token: null,
   user: null,
   isAuth: false,
+  isLoading: false,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -24,13 +28,21 @@ const authSlice = createSlice({
   initialState: initialState,
   extraReducers: builder => {
     builder
+      .addCase(registrationThunk.pending, handleAuthPending)
       .addCase(registrationThunk.fulfilled, handleAuthFulfilled)
+      .addCase(registrationThunk.rejected, handleAuthRejected)
+      .addCase(refreshThunk.pending, handleAuthPending)
       .addCase(refreshThunk.fulfilled, handleRefreshFulfilled)
+      .addCase(refreshThunk.rejected, handleAuthRejected)
+      .addCase(loginThunk.pending, handleAuthPending)
       .addCase(loginThunk.fulfilled, handleAuthFulfilled)
-      .addCase(loginThunk.rejected, () => {
+      .addCase(loginThunk.rejected, handleAuthRejected, () => {
         toast.error('Wrong email or password');
       })
-      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled);
+      .addCase(logoutThunk.pending, handleAuthPending)
+      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
+      .addCase(logoutThunk.rejected, handleAuthRejected)
+      .addDefaultCase((state, action) => {});
   },
 });
 

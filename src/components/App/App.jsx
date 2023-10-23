@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Layout from 'components/Layout/Layout';
 import HomePage from 'Page/Home/HomePage';
@@ -20,7 +20,7 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="registration" element={<Registration />} />
             <Route path="user" element={<UserPage />} />
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </Suspense>

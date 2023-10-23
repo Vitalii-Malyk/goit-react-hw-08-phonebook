@@ -13,12 +13,13 @@ import {
   handlefulfilledDel,
   handlefulfilledFetch,
 } from 'helper/functions/functions';
-import { addContact, deleteContact, fetchContacts } from './operations';
+import { addContact, deleteContact, fetchContacts } from './authOperations';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  // showModal: false,
 };
 
 const contactsSlice = createSlice({

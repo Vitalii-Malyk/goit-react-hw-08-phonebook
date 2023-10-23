@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import SignIn from 'components/SignIn/SignIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginThunk } from 'redux/operations';
+import { loginThunk } from 'redux/authOperations';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,10 @@ const LoginPage = () => {
 
   const login = body => {
     dispatch(loginThunk(body));
-    navigate('/user');
+    if (isAuth === true) {
+      navigate('/user');
+    }
+    return;
   };
 
   useEffect(() => {

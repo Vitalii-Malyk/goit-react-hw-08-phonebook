@@ -4,7 +4,7 @@ import { HeaderStyled, StyledNavLink, StyledWrap } from './Header.styled';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-import { logoutThunk } from 'redux/operations';
+import { logoutThunk } from 'redux/authOperations';
 import { Toaster } from 'react-hot-toast';
 
 const Header = () => {

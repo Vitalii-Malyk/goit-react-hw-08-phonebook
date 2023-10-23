@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { reducer } from 'redux/reducer';
 
-// import { combineReducers } from 'redux';
 import {
   persistStore,
   FLUSH,
