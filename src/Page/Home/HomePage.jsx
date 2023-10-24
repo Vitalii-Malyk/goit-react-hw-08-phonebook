@@ -1,4 +1,4 @@
-import { WrapMainElementStyle } from 'components/App/App.styled';
+import { WrapMainElementStyle } from 'Page/Home/HomePage.styled';
 
 const HomePage = () => {
   return (

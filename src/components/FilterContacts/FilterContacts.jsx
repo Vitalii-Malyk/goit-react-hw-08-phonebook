@@ -8,14 +8,13 @@ import {
 } from 'components/FilterContacts/FilterContacts.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from 'redux/filterSlice';
-import Example from 'components/Loading/Loading';
+import Loader from 'components/Loading/Loading';
 
 const FilterContacts = () => {
   let nameInputId = nanoid();
   const filter = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(state => state.contacts);
 
   const handleChange = ({ currentTarget: { value } }) => {
     const normalizedValue = value.toLowerCase().trim();
@@ -34,7 +33,7 @@ const FilterContacts = () => {
           value={filter}
         />
       </WrapElementStyle>
-      {isLoading && <Example />}
+      <Loader />
     </WrapMainElementStyle>
   );
 };

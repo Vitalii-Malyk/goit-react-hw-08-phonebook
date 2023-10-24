@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
+  const navigate = useNavigate();
   return (
     <Typography
       variant="body2"
@@ -22,8 +23,11 @@ function Copyright(props) {
     >
       {'Copyright © '}
       <Link
-        color="inherit"
-        href="http://localhost:3000/goit-react-hw-08-phonebook"
+        component="button"
+        variant="body2"
+        onClick={() => {
+          navigate('/');
+        }}
       >
         Your Website
       </Link>{' '}
@@ -135,7 +139,13 @@ export default function SignUp({ registration }) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    navigate('/login');
+                  }}
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>

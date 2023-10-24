@@ -1,27 +1,23 @@
-// import { useEffect } from 'react';
-
-import SignIn from 'components/SignIn/SignIn';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import SignIn from 'components/SignIn/SignIn';
+
 import { loginThunk } from 'redux/authOperations';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const { isAuth } = useSelector(state => state.auth);
 
   const login = body => {
     dispatch(loginThunk(body));
-
-    navigate('/user');
+    if (isAuth) {
+      navigate('/user');
+    }
 
     return;
   };
-
-  useEffect(() => {
-    isAuth && navigate('/');
-  }, [isAuth, navigate]);
 
   return <SignIn login={login} />;
 };

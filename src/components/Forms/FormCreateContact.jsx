@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
+
+import { addContact } from 'redux/contactsOperations';
 
 import {
   FormElementStyle,
   InputElementStyle,
   ButtonElementStyle,
 } from 'components/Forms/FormCreateContact.styled';
-
-import { addContact } from 'redux/contactsOperations';
-import { nanoid } from '@reduxjs/toolkit';
 
 const FormCreateContact = () => {
   const [name, setName] = useState('');
@@ -52,19 +52,9 @@ const FormCreateContact = () => {
         )
       ) {
         dispatch(addContact(nameArr));
-        Notify.info(
-          `A contact named ${nameArr.name} has been added to the contacts book`,
-          {
-            position: 'center-center',
-            timeout: '1500',
-          }
-        );
         resetForm();
       } else {
-        Notify.info('The contact is already in the phone book!', {
-          position: 'center-center',
-          timeout: '1500',
-        });
+        toast.error('The contact is already in the phone book!');
       }
     } else {
       console.log(nameArr);

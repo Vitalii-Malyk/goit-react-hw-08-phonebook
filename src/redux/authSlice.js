@@ -13,7 +13,6 @@ import {
   handleLogoutFullfilled,
   handleRefreshFullfilled,
 } from 'helper/functions/functions';
-import toast from 'react-hot-toast';
 
 const initialState = {
   token: null,
@@ -36,9 +35,7 @@ const authSlice = createSlice({
       .addCase(refreshThunk.rejected, handleAuthRejected)
       .addCase(loginThunk.pending, handleAuthPending)
       .addCase(loginThunk.fulfilled, handleAuthFullfilled)
-      .addCase(loginThunk.rejected, handleAuthRejected, () => {
-        toast.error('Wrong email or password');
-      })
+      .addCase(loginThunk.rejected, handleAuthRejected)
       .addCase(logoutThunk.pending, handleAuthPending)
       .addCase(logoutThunk.fulfilled, handleLogoutFullfilled)
       .addCase(logoutThunk.rejected, handleAuthRejected)

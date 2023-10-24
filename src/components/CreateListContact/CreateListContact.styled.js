@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
-export const ListElementStyle = styled('ul')(() => {
-  return {
-    listStyle: 'none',
-    marginTop: '5px',
-    padding: 0,
-    fontSize: '18px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '5px',
-  };
-});
+export const ListElementStyle = styled.ul`
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  display: grid;
+  justify-content: center;
+  gap: 12px;
+
+  @media (min-width: 420px) {
+    grid-template-columns: 0fr 0fr;
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: 0fr 0fr 0fr;
+  }
+`;
 
 export const ItemElementStyle = styled('li')(() => {
   return {

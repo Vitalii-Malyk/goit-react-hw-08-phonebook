@@ -27,7 +27,6 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  // showModal: false,
 };
 
 const contactsSlice = createSlice({

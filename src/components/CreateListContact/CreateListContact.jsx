@@ -1,64 +1,89 @@
 import { nanoid } from 'nanoid';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Notify } from 'notiflix';
 
 import {
   ListElementStyle,
   ItemElementStyle,
-  ButtonElementStyle,
+  // ButtonElementStyle,
   WrapElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
-import { delContact, fetchContacts } from 'redux/contactsOperations';
-import Loader from 'components/Loading/Loading';
+import { delContact } from 'redux/contactsOperations';
+
+import * as React from 'react';
+// import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpdateIcon from '@mui/icons-material/Update';
+import { IconButton } from '@mui/material';
 
 const CreateListContact = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.contacts.isLoading);
-  const error = useSelector(state => state.contacts.error);
   const contacts = useSelector(state => state.contacts);
-  const isAuth = useSelector(state => state.auth.isAuth);
   const filter = useSelector(state => state.filters);
-
-  useEffect(() => {
-    if (!isAuth) return;
-    dispatch(fetchContacts());
-  }, [dispatch, isAuth]);
 
   const deleteContactFromList = ({ id, name }) => {
     dispatch(delContact(id));
-    Notify.info(`The contact with the name ${name} has been deleted`, {
-      position: 'center-center',
-      autoHideDelay: 1500,
-    });
   };
 
   const normalizedFilter = filter.toLocaleLowerCase();
-  console.log(normalizedFilter);
   const filtredContacts = contacts.items.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 
   const createContactItem = () => {
-    console.log(filtredContacts);
     return filtredContacts.map(contact => {
       return (
         <ItemElementStyle key={nanoid()}>
-          {`${contact.name} : ${contact.number}`}
+          <Card
+            sx={{ minWidth: 175, maxWidth: 200, height: 50, display: 'flex' }}
+          >
+            <CardContent sx={{ width: 150, m: 0, p: 0.2 }}>
+              <Typography
+                sx={{ mb: 0, textAlign: 'center', justifyContent: 'center' }}
+                variant="elevation"
+              >{`${contact.name}`}</Typography>
+              <Typography
+                sx={{ mb: 0, textAlign: 'center', justifyContent: 'center' }}
+                color="text.secondary"
+              >
+                {`${contact.number}`}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={() => console.log('object')}
+              >
+                <UpdateIcon fontSize="inherit" color="primary" />
+              </IconButton>
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={() => deleteContactFromList(contact)}
+              >
+                <DeleteIcon fontSize="inherit" color="primary" />
+              </IconButton>
+            </CardActions>
+          </Card>
+
+          {/* {`${contact.name} : ${contact.number}`}
           <ButtonElementStyle
             data-id={contact.id}
             onClick={() => deleteContactFromList(contact)}
           >
             x
-          </ButtonElementStyle>
+          </ButtonElementStyle> */}
         </ItemElementStyle>
       );
     });
   };
   return (
     <ListElementStyle>
-      {loading && <Loader />}
-      {error && <p>Error... {error}</p>}
       {contacts.items.length > 0 ? (
         createContactItem()
       ) : (
@@ -71,3 +96,24 @@ const CreateListContact = () => {
 };
 
 export default CreateListContact;
+
+// export function ContactCard() {
+//   return (
+//     <Card sx={{ minWidth: 275 }}>
+//       <CardContent>
+//         <Typography variant="h5" component="div">
+//           {`${contact.name}`}
+//         </Typography>
+//         <Typography sx={{ mb: 1.5 }} color="text.secondary">
+//           {`${contact.number}`}
+//         </Typography>
+//       </CardContent>
+//       <CardActions>
+//         <Button size="small">Update contact</Button>
+//       </CardActions>
+//       <CardActions>
+//         <Button size="small">Delete contact</Button>
+//       </CardActions>
+//     </Card>
+//   );
+// }

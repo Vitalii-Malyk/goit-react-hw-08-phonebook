@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
@@ -18,6 +19,7 @@ const addContact = createAsyncThunk(
   async ({ id, name, number }, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/contacts', { name, number });
+      toast.success(`Contact ${name} has been added`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -30,6 +32,7 @@ const delContact = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`/contacts/${id}`);
+      toast.success(`Сontact ${data.name} has been deleted`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -1,5 +1,3 @@
-import toast from 'react-hot-toast';
-
 // ?----------------USER----------------------
 const handleAuthPending = (state, action) => {
   state.isLoading = true;
@@ -17,7 +15,6 @@ const handleAuthFullfilled = (state, action) => {
   state.user = action.payload.user;
   state.isAuth = true;
   state.isLoading = false;
-  toast.success(`Welcome ${state.user.name}!`);
 };
 
 const handleRefreshFullfilled = (state, action) => {
