@@ -8,12 +8,13 @@ import {
 } from 'components/FilterContacts/FilterContacts.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from 'redux/filterSlice';
+import { filterSelector } from 'redux/Selectors';
 
 const FilterContacts = () => {
-  let nameInputId = nanoid();
-  const filter = useSelector(state => state.filter);
-
+  const filter = useSelector(filterSelector);
   const dispatch = useDispatch();
+
+  let nameInputId = nanoid();
 
   const handleChange = ({ currentTarget: { value } }) => {
     const normalizedValue = value.toLowerCase().trim();

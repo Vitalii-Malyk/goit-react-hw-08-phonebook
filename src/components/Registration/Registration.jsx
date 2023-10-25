@@ -38,8 +38,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignUp({ registration }) {
@@ -47,11 +45,6 @@ export default function SignUp({ registration }) {
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    // console.log({
-    //   name: data.get('name'),
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
     registration({
       name: data.get('name'),
       email: data.get('email'),

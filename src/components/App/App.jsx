@@ -23,9 +23,31 @@ const App = () => {
     dispatch(refreshThunk());
   }, [dispatch]);
 
+  const MyToaster = () => {
+    return (
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              background: 'rgb(250, 235, 215)',
+            },
+          },
+          error: {
+            style: {
+              background: 'rgb(248, 208, 155)',
+            },
+          },
+        }}
+        containerStyle={{
+          top: '70px',
+        }}
+      />
+    );
+  };
+
   return (
     <>
-      <Toaster />
+      <MyToaster />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>

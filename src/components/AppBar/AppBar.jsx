@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Navigation } from 'components/Navigation/Navigation';
+import { isAuthSelector } from 'redux/Selectors';
 
 export const AppBarComponent = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector(isAuthSelector);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

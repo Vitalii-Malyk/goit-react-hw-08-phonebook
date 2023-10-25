@@ -2,10 +2,14 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 import { useSelector } from 'react-redux';
 import { Container } from './Loading.styled';
+import {
+  isAuthLoadingSelector,
+  isContactsLoadingSelector,
+} from 'redux/Selectors';
 
 export const Loader = () => {
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  const loader = useSelector(state => state.auth.isLoading);
+  const isLoading = useSelector(isContactsLoadingSelector);
+  const loader = useSelector(isAuthLoadingSelector);
   return (isLoading || loader) && <LoaderWrapper />;
 };
 

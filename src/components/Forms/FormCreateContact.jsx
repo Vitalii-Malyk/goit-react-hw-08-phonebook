@@ -11,12 +11,13 @@ import {
   WrapperStyle,
 } from 'components/Forms/FormCreateContact.styled';
 import { Button } from '@mui/material';
+import { contactsSelector } from 'redux/Selectors';
 
 const FormCreateContact = () => {
   const [name, setName] = useState('');
   const [number, setPhone] = useState('');
   const dispatch = useDispatch();
-  const { items } = useSelector(state => state.contacts);
+  const { items } = useSelector(contactsSelector);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') {

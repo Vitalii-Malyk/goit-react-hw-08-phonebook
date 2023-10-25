@@ -6,6 +6,7 @@ import { AuthNavBox } from './AuthNav.styled';
 
 export const AuthNav = () => {
   const navigate = useNavigate();
+  
   return (
     <AuthNavBox>
       <Button

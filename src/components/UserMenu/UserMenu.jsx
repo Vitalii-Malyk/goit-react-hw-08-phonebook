@@ -6,11 +6,12 @@ import { Wrapper } from './UserMenu.styled';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { logoutThunk } from 'redux/authOperations';
+import { userSelector } from 'redux/Selectors';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector(userSelector);
 
   const handleClick = () => {
     dispatch(logoutThunk());

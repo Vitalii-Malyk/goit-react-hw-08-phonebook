@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { Nav } from './Navigation.styled';
+import { isAuthSelector } from 'redux/Selectors';
 
 export const Navigation = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector(isAuthSelector);
   const navigate = useNavigate();
 
   return (

@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 import {
   ListElementStyle,
@@ -22,16 +23,20 @@ import UpdateIcon from '@mui/icons-material/Update';
 import { Button, IconButton } from '@mui/material';
 
 import FormUpdateContact from 'components/Forms/FormUpdateContact';
-import { useEffect } from 'react';
+import {
+  contactsSelector,
+  filterSelector,
+  isModalContactsSelector,
+} from 'redux/Selectors';
 
 const CreateListContact = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filters);
-  const [id, setId] = React.useState(null);
-  const isModal = useSelector(state => state.contacts.isModal);
+  const [id, setId] = useState(null);
+  const [open, setOpen] = useState(false);
+  const isModal = useSelector(isModalContactsSelector);
+  const contacts = useSelector(contactsSelector);
+  const filter = useSelector(filterSelector);
 
-  const [open, setOpen] = React.useState(false);
   const handleOpen = id => {
     setOpen(true);
   };
