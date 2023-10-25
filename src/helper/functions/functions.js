@@ -34,6 +34,7 @@ const handleLogoutFullfilled = (state, action) => {
 
 const handlePending = (state, action) => {
   state.isLoading = true;
+  state.isModal = true;
 };
 
 const handleRejected = (state, action) => {
@@ -68,6 +69,7 @@ const handlefullfilledUpdate = (state, action) => {
   );
   state.items[index].name = action.payload.name;
   state.items[index].number = action.payload.number;
+  state.isModal = false;
 };
 const handlefullfilledClear = (state, action) => {
   state.items = action.payload;

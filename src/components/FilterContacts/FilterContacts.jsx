@@ -8,7 +8,6 @@ import {
 } from 'components/FilterContacts/FilterContacts.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from 'redux/filterSlice';
-import Loader from 'components/Loading/Loading';
 
 const FilterContacts = () => {
   let nameInputId = nanoid();
@@ -33,7 +32,6 @@ const FilterContacts = () => {
           value={filter}
         />
       </WrapElementStyle>
-      <Loader />
     </WrapMainElementStyle>
   );
 };

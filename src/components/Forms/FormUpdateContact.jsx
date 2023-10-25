@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-import { addContact } from 'redux/contactsOperations';
+import { updateContact } from 'redux/contactsOperations';
 
 import {
   FormElementStyle,
   InputElementStyle,
   WrapperStyle,
-} from 'components/Forms/FormCreateContact.styled';
+} from 'components/Forms/FormUpdateContact.styled';
 import { Button } from '@mui/material';
 
-const FormCreateContact = () => {
+const FormUpdateContact = ({ contactId }) => {
   const [name, setName] = useState('');
   const [number, setPhone] = useState('');
   const dispatch = useDispatch();
@@ -31,7 +30,8 @@ const FormCreateContact = () => {
     setName('');
     setPhone('');
   };
-  const сreateСontact = e => {
+
+  const updateСontact = e => {
     e.preventDefault();
 
     return formSubmitHandler({ name, number });
@@ -41,7 +41,7 @@ const FormCreateContact = () => {
   };
   const repeatControl = newContact => {
     let nameArr = {
-      id: nanoid(),
+      id: contactId,
       name: newContact.name,
       number: newContact.number,
     };
@@ -52,21 +52,20 @@ const FormCreateContact = () => {
             nameArr.name.toLowerCase() === newContact.name.toLowerCase()
         )
       ) {
-        dispatch(addContact(nameArr));
+        dispatch(updateContact(nameArr));
         resetForm();
       } else {
         toast.error('The contact is already in the phone book!');
       }
     } else {
-      console.log(nameArr);
-      dispatch(addContact(nameArr));
+      dispatch(updateContact(nameArr));
       resetForm();
     }
   };
 
   return (
     <WrapperStyle>
-      <FormElementStyle onSubmit={сreateСontact}>
+      <FormElementStyle onSubmit={updateСontact}>
         <label>Name</label>
         <InputElementStyle
           onChange={handleChange}
@@ -102,11 +101,11 @@ const FormCreateContact = () => {
             },
           }}
         >
-          Add contact
+          Update contact
         </Button>
       </FormElementStyle>
     </WrapperStyle>
   );
 };
 
-export default FormCreateContact;
+export default FormUpdateContact;

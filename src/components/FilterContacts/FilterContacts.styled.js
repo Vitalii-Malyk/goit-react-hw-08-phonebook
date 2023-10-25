@@ -23,5 +23,7 @@ export const WrapMainElementStyle = styled('div')(() => {
     display: 'flex',
     alignItems: 'end',
     gap: '10px',
+    justifyContent: 'center',
+    marginBottom: '10px',
   };
 });

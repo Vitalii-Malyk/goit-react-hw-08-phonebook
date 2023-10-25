@@ -19,14 +19,30 @@ export const Navigation = () => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        sx={{ mr: 2 }}
+        sx={{
+          p: 0.4,
+          color: 'darkslategray',
+          ':hover': {
+            color: 'rgba(25, 118, 210)',
+          },
+        }}
         onClick={() => navigate('/')}
       >
         <HomeIcon />
       </IconButton>
       {isAuth && (
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Button onClick={() => navigate('/contacts')} color="inherit">
+          <Button
+            onClick={() => navigate('/user')}
+            color="inherit"
+            sx={{
+              p: 0.4,
+              color: 'darkslategray',
+              ':hover': {
+                color: 'rgba(25, 118, 210)',
+              },
+            }}
+          >
             Phonebook
           </Button>
         </Typography>

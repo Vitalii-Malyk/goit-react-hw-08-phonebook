@@ -49,6 +49,7 @@ const updateContact = createAsyncThunk(
         name,
         number,
       });
+      toast.success(`Contact ${name} has been update`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

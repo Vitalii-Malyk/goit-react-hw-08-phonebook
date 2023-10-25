@@ -19,10 +19,19 @@ export const UserMenu = () => {
 
   return (
     <Wrapper>
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+      <Typography component="p" sx={{ color: 'rgba(25, 118, 210)' }}>
         {user.name}
       </Typography>
-      <Button onClick={handleClick} color="inherit">
+      <Button
+        onClick={handleClick}
+        sx={{
+          p: 0.5,
+          color: 'darkslategray',
+          ':hover': {
+            color: 'rgba(25, 118, 210)',
+          },
+        }}
+      >
         Log Out
       </Button>
     </Wrapper>

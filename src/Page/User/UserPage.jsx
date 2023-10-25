@@ -10,7 +10,13 @@ import { fetchContacts } from 'redux/contactsOperations';
 
 import { Button } from '@mui/material';
 
-import { WrapMainElementStyle } from 'Page/Home/HomePage.styled';
+import {
+  TextStyle,
+  TitleStyle,
+  WrapLoaderStyle,
+  WrapMainElementStyle,
+} from './UserPage.styled';
+import { Loader2 } from 'components/Loading/Loading';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -28,16 +34,27 @@ const UserPage = () => {
             navigate('/');
           }}
           type="button"
-          variant="outlined"
-          sx={{ mt: 1, mb: 1 }}
+          variant="contained"
+          sx={{
+            mt: 1,
+            mb: 1,
+            p: 0.3,
+            color: 'darkslategray',
+            backgroundColor: 'rgb(250, 235, 215)',
+            ':hover': {
+              backgroundColor: 'rgb(250, 235, 215, 0.8)',
+              color: 'rgba(25, 118, 210)',
+            },
+          }}
           size="small"
         >
           Go home
         </Button>
-        <h1>Phonebook</h1>
+        <TitleStyle>Phonbook</TitleStyle>
         <FormCreateContact />
-        <h2>Contacts</h2>
+        <TextStyle>Contacts</TextStyle>
         <FilterContacts />
+        <WrapLoaderStyle>{<Loader2 />}</WrapLoaderStyle>
         <CreateListContact />
       </WrapMainElementStyle>
     </>

@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 
 import Layout from 'components/Layout/Layout';
-import Loader from 'components/Loading/Loading';
+import { Loader } from 'components/Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { refreshThunk } from 'redux/authOperations';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
@@ -34,7 +34,7 @@ const App = () => {
               path="register"
               element={
                 <RestrictedRoute
-                  redirectTo="/contacts"
+                  redirectTo="/user"
                   component={<RegistrationPage />}
                 />
               }
@@ -42,14 +42,11 @@ const App = () => {
             <Route
               path="login"
               element={
-                <RestrictedRoute
-                  redirectTo="/contacts"
-                  component={<LoginPage />}
-                />
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
               }
             />
             <Route
-              path="contacts"
+              path="user"
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
               }

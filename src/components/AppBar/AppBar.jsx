@@ -13,7 +13,12 @@ export const AppBarComponent = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar
+          sx={{
+            backgroundColor: 'rgb(250, 235, 215)',
+            color: 'rgba(25, 118, 210)',
+          }}
+        >
           <Navigation />
           {isAuth ? <UserMenu /> : <AuthNav />}
         </Toolbar>

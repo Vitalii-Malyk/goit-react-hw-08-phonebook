@@ -14,6 +14,9 @@ export const ListElementStyle = styled.ul`
   @media (min-width: 768px) {
     grid-template-columns: 0fr 0fr 0fr;
   }
+  @media (min-width: 1280px) {
+    grid-template-columns: 0fr 0fr 0fr 0fr 0fr;
+  }
 `;
 
 export const ItemElementStyle = styled('li')(() => {
@@ -38,5 +41,11 @@ export const WrapElementStyle = styled('div')(() => {
   return {
     marginTop: '5px',
     fontSize: '18px',
+  };
+});
+export const WrapBtnStyle = styled('div')(() => {
+  return {
+    display: 'flex',
+    justifyContent: 'flex-end',
   };
 });

@@ -3,8 +3,8 @@ import ReactLoading from 'react-loading';
 import { useSelector } from 'react-redux';
 import { Container } from './Loading.styled';
 
-const Loader = () => {
-  const { isLoading } = useSelector(state => state.contacts);
+export const Loader = () => {
+  const isLoading = useSelector(state => state.contacts.isLoading);
   const loader = useSelector(state => state.auth.isLoading);
   return (isLoading || loader) && <LoaderWrapper />;
 };
@@ -12,12 +12,27 @@ const Loader = () => {
 const LoaderWrapper = () => (
   <Container>
     <ReactLoading
-      color={'rgb(14, 127, 221, 0.5)'}
-      fill={'rgb(14, 127, 221, 0.5)'}
+      color={'rgb(14, 127, 221)'}
+      fill={'rgb(14, 127, 221)'}
       height={'5%'}
       width={'5%'}
     />
   </Container>
 );
 
-export default Loader;
+export const Loader2 = () => {
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  const loader = useSelector(state => state.auth.isLoading);
+  return (isLoading || loader) && <LoaderWrapper2 />;
+};
+
+const LoaderWrapper2 = () => (
+  <Container>
+    <ReactLoading
+      color={'rgb(250, 235, 215)'}
+      fill={'rgb(250, 235, 215)'}
+      height={'5%'}
+      width={'5%'}
+    />
+  </Container>
+);
