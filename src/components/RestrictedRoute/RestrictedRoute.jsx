@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+
 import { isAuthSelector } from 'redux/Selectors';
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {

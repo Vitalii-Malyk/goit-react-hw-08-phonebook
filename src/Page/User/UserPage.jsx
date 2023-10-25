@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import FormCreateContact from 'components/Forms/FormCreateContact';
-import FilterContacts from 'components/FilterContacts/FilterContacts';
-import CreateListContact from 'components/CreateListContact/CreateListContact';
-
+import { FormCreateContact } from 'components/Forms/FormCreateContact';
+import { FilterContacts } from 'components/FilterContacts/FilterContacts';
+import { CreateListContact } from 'components/CreateListContact/CreateListContact';
 import { fetchContacts } from 'redux/contactsOperations';
+import { Loader2 } from 'components/Loading/Loading';
 
-import { Button } from '@mui/material';
+import { Button } from 'helper/materialApiImport';
 
 import {
   TextStyle,
@@ -16,7 +16,6 @@ import {
   WrapLoaderStyle,
   WrapMainElementStyle,
 } from './UserPage.styled';
-import { Loader2 } from 'components/Loading/Loading';
 
 const UserPage = () => {
   const dispatch = useDispatch();

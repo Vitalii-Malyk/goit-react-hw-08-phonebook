@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
 import { useSelector } from 'react-redux';
-import { Container } from './Loading.styled';
+
 import {
   isAuthLoadingSelector,
   isContactsLoadingSelector,
 } from 'redux/Selectors';
+
+import { Container } from './Loading.styled';
 
 export const Loader = () => {
   const isLoading = useSelector(isContactsLoadingSelector);

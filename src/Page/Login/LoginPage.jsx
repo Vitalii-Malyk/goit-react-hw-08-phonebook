@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import SignIn from 'components/SignIn/SignIn';
-
+import { SignIn } from 'components/SignIn/SignIn';
 import { loginThunk } from 'redux/authOperations';
 import { isAuthSelector } from 'redux/Selectors';
 

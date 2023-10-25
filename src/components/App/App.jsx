@@ -1,13 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
-
-import Layout from 'components/Layout/Layout';
-import { Loader } from 'components/Loading/Loading';
 import { useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
+
+import { Layout } from 'components/Layout/Layout';
+import { Loader } from 'components/Loading/Loading';
 import { refreshThunk } from 'redux/authOperations';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
-import { Toaster } from 'react-hot-toast';
 
 const LoginPage = lazy(() => import('Page/Login/LoginPage'));
 const RegistrationPage = lazy(() =>
@@ -16,7 +16,7 @@ const RegistrationPage = lazy(() =>
 const HomePage = lazy(() => import('Page/Home/HomePage'));
 const UserPage = lazy(() => import('Page/User/UserPage'));
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -80,5 +80,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;

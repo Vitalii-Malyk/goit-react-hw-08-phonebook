@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-import Button from '@mui/material/Button';
+import { Button } from 'helper/materialApiImport';
 
 import { AuthNavBox } from './AuthNav.styled';
 
 export const AuthNav = () => {
   const navigate = useNavigate();
-  
+
   return (
     <AuthNavBox>
       <Button

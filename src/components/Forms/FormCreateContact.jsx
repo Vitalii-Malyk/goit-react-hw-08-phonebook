@@ -4,16 +4,17 @@ import { nanoid } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
 import { addContact } from 'redux/contactsOperations';
+import { contactsSelector } from 'redux/Selectors';
+
+import { Button } from 'helper/materialApiImport';
 
 import {
   FormElementStyle,
   InputElementStyle,
   WrapperStyle,
 } from 'components/Forms/FormCreateContact.styled';
-import { Button } from '@mui/material';
-import { contactsSelector } from 'redux/Selectors';
 
-const FormCreateContact = () => {
+export const FormCreateContact = () => {
   const [name, setName] = useState('');
   const [number, setPhone] = useState('');
   const dispatch = useDispatch();
@@ -59,7 +60,6 @@ const FormCreateContact = () => {
         toast.error('The contact is already in the phone book!');
       }
     } else {
-      console.log(nameArr);
       dispatch(addContact(nameArr));
       resetForm();
     }
@@ -109,5 +109,3 @@ const FormCreateContact = () => {
     </WrapperStyle>
   );
 };
-
-export default FormCreateContact;

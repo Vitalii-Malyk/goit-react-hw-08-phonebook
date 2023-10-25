@@ -37,10 +37,12 @@ export const ButtonElementStyle = styled('button')(() => {
   };
 });
 
-export const WrapElementStyle = styled('div')(() => {
+export const WrapElementStyle = styled('p')(() => {
   return {
     marginTop: '5px',
     fontSize: '18px',
+    width: 'inherit',
+    textAlign: 'center',
   };
 });
 export const WrapBtnStyle = styled('div')(() => {

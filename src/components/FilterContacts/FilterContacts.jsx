@@ -1,16 +1,17 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { updateFilter } from 'redux/filterSlice';
+import { filterSelector } from 'redux/Selectors';
 
 import {
   WrapElementStyle,
   InputElementStyle,
   WrapMainElementStyle,
 } from 'components/FilterContacts/FilterContacts.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter } from 'redux/filterSlice';
-import { filterSelector } from 'redux/Selectors';
 
-const FilterContacts = () => {
+export const FilterContacts = () => {
   const filter = useSelector(filterSelector);
   const dispatch = useDispatch();
 
@@ -36,5 +37,3 @@ const FilterContacts = () => {
     </WrapMainElementStyle>
   );
 };
-
-export default FilterContacts;

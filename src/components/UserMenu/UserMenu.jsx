@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Wrapper } from './UserMenu.styled';
-
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { logoutThunk } from 'redux/authOperations';
 import { userSelector } from 'redux/Selectors';
+
+import { Typography, Button } from 'helper/materialApiImport';
+
+import { Wrapper } from './UserMenu.styled';
+import { clearContacts } from 'redux/contactsOperations';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const UserMenu = () => {
 
   const handleClick = () => {
     dispatch(logoutThunk());
+    dispatch(clearContacts());
     navigate('/');
   };
 

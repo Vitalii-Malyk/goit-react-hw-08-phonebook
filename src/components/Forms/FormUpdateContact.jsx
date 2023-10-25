@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
 import { updateContact } from 'redux/contactsOperations';
+import { contactsSelector } from 'redux/Selectors';
+
+import { Button } from 'helper/materialApiImport';
 
 import {
   FormElementStyle,
   InputElementStyle,
   WrapperStyle,
 } from 'components/Forms/FormUpdateContact.styled';
-import { Button } from '@mui/material';
-import { contactsSelector } from 'redux/Selectors';
 
-const FormUpdateContact = ({ contactId }) => {
+export const FormUpdateContact = ({ contactId }) => {
   const [name, setName] = useState('');
   const [number, setPhone] = useState('');
   const dispatch = useDispatch();
@@ -108,5 +109,3 @@ const FormUpdateContact = ({ contactId }) => {
     </WrapperStyle>
   );
 };
-
-export default FormUpdateContact;

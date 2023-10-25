@@ -1,13 +1,16 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { isAuthSelector } from 'redux/Selectors';
+
+import {
+  IconButton,
+  HomeIcon,
+  Typography,
+  Button,
+} from 'helper/materialApiImport';
 
 import { Nav } from './Navigation.styled';
-import { isAuthSelector } from 'redux/Selectors';
 
 export const Navigation = () => {
   const isAuth = useSelector(isAuthSelector);

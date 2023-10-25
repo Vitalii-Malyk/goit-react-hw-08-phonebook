@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import SignUp from 'components/Registration/Registration';
-
+import { SignUp } from 'components/Registration/Registration';
 import { registrationThunk } from 'redux/authOperations';
 
 const RegistrationPage = () => {

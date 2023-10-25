@@ -1,6 +1,29 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import * as React from 'react';
+
+import { delContact } from 'redux/contactsOperations';
+import { FormUpdateContact } from 'components/Forms/FormUpdateContact';
+import {
+  contactsSelector,
+  filterSelector,
+  isModalContactsSelector,
+} from 'redux/Selectors';
+import bgImage from 'helper/image/telefon-bgc.jpg';
+
+import {
+  Box,
+  Typography,
+  Modal,
+  Card,
+  CardActions,
+  CardContent,
+  DeleteIcon,
+  UpdateIcon,
+  Button,
+  IconButton,
+} from 'helper/materialApiImport';
 
 import {
   ListElementStyle,
@@ -8,28 +31,8 @@ import {
   WrapElementStyle,
   WrapBtnStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
-import { delContact } from 'redux/contactsOperations';
 
-import * as React from 'react';
-
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import DeleteIcon from '@mui/icons-material/Delete';
-import UpdateIcon from '@mui/icons-material/Update';
-import { Button, IconButton } from '@mui/material';
-
-import FormUpdateContact from 'components/Forms/FormUpdateContact';
-import {
-  contactsSelector,
-  filterSelector,
-  isModalContactsSelector,
-} from 'redux/Selectors';
-
-const CreateListContact = () => {
+export const CreateListContact = () => {
   const dispatch = useDispatch();
   const [id, setId] = useState(null);
   const [open, setOpen] = useState(false);
@@ -51,9 +54,14 @@ const CreateListContact = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'rgb(46, 49, 64)',
-    border: '1px solid rgb(250, 235, 215, 0.1)',
+    width: 300,
+    '@media(min-width: 420px)': { width: 350 },
+    '@media(min-width: 768px)': { width: 450 },
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: 'cover',
+    overflow: 'unset',
+    backgroundPosition: 'center center',
+    border: '1px solid rgb(250, 235, 215)',
     boxShadow: 24,
     p: 1,
     color: 'rgb(250, 235, 215)',
@@ -120,14 +128,15 @@ const CreateListContact = () => {
     });
   };
   return (
-    <ListElementStyle>
-      {contacts.items.length > 0 ? (
-        CreateContactItem()
-      ) : (
-        <WrapElementStyle>
-          The phone book is empty, add a contact
-        </WrapElementStyle>
+    <>
+      {contacts.items.length > 0 && (
+        <ListElementStyle>
+          <CreateContactItem />
+        </ListElementStyle>
       )}
+      <WrapElementStyle>
+        The phone book is empty, add a contact
+      </WrapElementStyle>
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
           <WrapBtnStyle>
@@ -157,8 +166,6 @@ const CreateListContact = () => {
           />
         </Box>
       </Modal>
-    </ListElementStyle>
+    </>
   );
 };
-
-export default CreateListContact;

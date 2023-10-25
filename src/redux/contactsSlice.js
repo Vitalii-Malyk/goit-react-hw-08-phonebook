@@ -15,6 +15,7 @@ import {
   handlefullfilledFetch,
   handlefullfilledUpdate,
 } from 'helper/functions/functions';
+
 import {
   addContact,
   clearContacts,
