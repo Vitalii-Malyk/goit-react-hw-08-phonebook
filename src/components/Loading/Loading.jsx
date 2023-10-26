@@ -37,8 +37,8 @@ const LoaderWrapper2 = () => (
     <ReactLoading
       color={'rgb(250, 235, 215)'}
       fill={'rgb(250, 235, 215)'}
-      height={'5%'}
-      width={'5%'}
+      height={'3%'}
+      width={'3%'}
     />
   </Container>
 );

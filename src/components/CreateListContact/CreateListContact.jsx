@@ -129,14 +129,15 @@ export const CreateListContact = () => {
   };
   return (
     <>
-      {contacts.items.length > 0 && (
+      {contacts.items.length > 0 ? (
         <ListElementStyle>
           <CreateContactItem />
         </ListElementStyle>
+      ) : (
+        <WrapElementStyle>
+          The phone book is empty, add a contact
+        </WrapElementStyle>
       )}
-      <WrapElementStyle>
-        The phone book is empty, add a contact
-      </WrapElementStyle>
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
           <WrapBtnStyle>
